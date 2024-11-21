@@ -1,6 +1,6 @@
 package src;
-import javax.swing.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -9,7 +9,7 @@ public class Gamepanel extends JComponent implements KeyListener {
     private Player player;
 
     public Gamepanel() {
-        // Initialize player at a default position
+        // Initialize the player
         player = new Player(180, 200, 20, 30, 5);
     }
 
@@ -34,29 +34,22 @@ public class Gamepanel extends JComponent implements KeyListener {
     public void startGame() {
         int tickSpeed = 1000 / 60; // 60 FPS for smoother animation
         Timer timer = new Timer(tickSpeed, e -> {
-        updateGame(); // Update game state
-        repaint();   // Repaint the screen
+            updateGame(); // Update game state
+            repaint();   // Repaint the screen
         });
         timer.start();
     }
 
     // Update game state
     public void updateGame() {
-        // Update player
-        player.update(getX(), getY());
+        player.update(getWidth(), getHeight());
     }
 
     // Paint the game components
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        // Background color
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getX(), getY());
-
-        // Draw player
-        player.draw(g);
+        player.draw(g, getWidth(), getHeight());
     }
 
     // KeyListener methods

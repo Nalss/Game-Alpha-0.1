@@ -1,4 +1,5 @@
 package src;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -26,24 +27,7 @@ public class Player {
         this.speed = speed;
     }
 
-    // Getters for position and dimensions
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    // Key press handling
+    // Handle key press
     public void keyPressed(int key) {
         if (key == KeyEvent.VK_LEFT) isMovingLeft = true;
         if (key == KeyEvent.VK_RIGHT) isMovingRight = true;
@@ -51,7 +35,7 @@ public class Player {
         if (key == KeyEvent.VK_DOWN) isMovingDown = true;
     }
 
-    // Key release handling
+    // Handle key release
     public void keyReleased(int key) {
         if (key == KeyEvent.VK_LEFT) isMovingLeft = false;
         if (key == KeyEvent.VK_RIGHT) isMovingRight = false;
@@ -60,15 +44,20 @@ public class Player {
     }
 
     // Update player's position
-    public void update(int getX, int getY) {
+    public void update(int panelWidth, int panelHeight) {
         if (isMovingLeft && x > 0) x -= speed;
-        if (isMovingRight && x < getX - width) x += speed;
+        if (isMovingRight && x < panelWidth - width) x += speed;
         if (isMovingUp && y > 0) y -= speed;
-        if (isMovingDown && y < getY - height) y += speed;
+        if (isMovingDown && y < panelHeight - height) y += speed;
     }
 
-    // Draw player on the screen
-    public void draw(Graphics g) {
+    // Draw player
+    public void draw(Graphics g, int panelWidth, int panelHeight) {
+        // Background
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, panelWidth, panelHeight);
+
+        // Player
         g.setColor(Color.BLUE);
         g.fillRect(x, y, width, height);
     }
