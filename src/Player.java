@@ -66,6 +66,7 @@ public class Player {
     //Draw cursor
     public void drawCursor(Graphics g, Component panel) {
         mouseInfo = MouseInfo.getPointerInfo();
+        /* CURSOR CALCULATIONS */
         //Get mouse location relative to screen
         Point mouseLocation = mouseInfo.getLocation();
         //Get panel location on the screen
