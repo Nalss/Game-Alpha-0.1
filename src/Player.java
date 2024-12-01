@@ -91,11 +91,5 @@ public class Player {
         // Print angles (for debugging)
         System.out.println("Angle in radians: " + angleRadians);
         System.out.println("Angle in degrees: " + angleDegrees);
-        
-        
-        
-        
-        
-        
     }
 }
