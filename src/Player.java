@@ -62,8 +62,9 @@ public class Player {
         g.setColor(Color.BLUE);
         g.fillRect(x, y, width, height);
     }
-
-    public void pointer(Component panel) {
+    
+    //Draw cursor
+    public void drawCursor(Graphics g, Component panel) {
         mouseInfo = MouseInfo.getPointerInfo();
         //Get mouse location relative to screen
         Point mouseLocation = mouseInfo.getLocation();
@@ -73,14 +74,17 @@ public class Player {
         double mouseX = mouseLocation.getX() - panelLocation.getX();
         double mouseY = mouseLocation.getY() - panelLocation.getY();
         //Calculate differences relative to player's center
-        double dx = mouseX - (x + width / 2.0);
-        double dy = mouseY - (y + height / 2.0);
+        double dx = mouseX - (x + width);
+        double dy = mouseY - (y + height);
         //Calculate angle in radians
         double angleRadians = Math.atan2(dy, dx);
         //Convert to degrees
-        double angleDegrees = Math.toDegrees(angleRadians);
-        //Print angles
-        System.out.println("Angle in radians: " + angleRadians);
-        System.out.println("Angle in degrees: " + angleDegrees);
+    //    double angleDegrees = Math.toDegrees(angleRadians);
+        //Calculate cursor position
+        int cursorX = (int) (x + width/2 + Math.cos(angleRadians) * 30);
+        int cursorY = (int) (y + height/2 + Math.sin(angleRadians) * 30);
+        //Draw Cursor
+        g.setColor(Color.RED);
+        g.fillRect(cursorX - 5, cursorY - 8, 14, 14);
     }
 }

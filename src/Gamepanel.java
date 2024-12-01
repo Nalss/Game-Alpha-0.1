@@ -42,7 +42,6 @@ public class Gamepanel extends JComponent implements KeyListener {
     //Update game state
     public void updateGame() {
         player.update(getWidth(), getHeight());
-        player.pointer(frame.getContentPane());
     }
 
     //Paint the game components
@@ -50,6 +49,7 @@ public class Gamepanel extends JComponent implements KeyListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         player.draw(g, getWidth(), getHeight());
+        player.drawCursor(g, frame.getContentPane());
     }
 
     //KeyListener methods
