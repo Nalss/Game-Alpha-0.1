@@ -6,17 +6,17 @@ import java.awt.event.*;
 
 public class Gamepanel extends JComponent implements KeyListener {
 
+    
     private Player player;
+    JFrame frame = new JFrame("Game");
+
 
     public Gamepanel() {
-        // Initialize the player
         player = new Player(180, 200, 20, 30, 5);
     }
 
     public void openGUI() {
         // Open GUI
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Game");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(400, 300);
             frame.setLocationRelativeTo(null); // Centers the window on screen
@@ -27,7 +27,6 @@ public class Gamepanel extends JComponent implements KeyListener {
 
             // Start the game loop
             startGame();
-        });
     }
 
     // Game loop with tick speed
@@ -43,6 +42,7 @@ public class Gamepanel extends JComponent implements KeyListener {
     // Update game state
     public void updateGame() {
         player.update(getWidth(), getHeight());
+        player.pointer(frame.getContentPane());
     }
 
     // Paint the game components

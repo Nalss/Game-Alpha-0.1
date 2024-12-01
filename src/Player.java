@@ -3,6 +3,8 @@ package src;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JPanel;
+
 public class Player {
 
     // Player attributes
@@ -17,6 +19,7 @@ public class Player {
     private boolean isMovingRight = false;
     private boolean isMovingUp = false;
     private boolean isMovingDown = false;
+    PointerInfo mouseInfo;
 
     // Constructor
     public Player(int x, int y, int width, int height, int speed) {
@@ -60,5 +63,39 @@ public class Player {
         // Player
         g.setColor(Color.BLUE);
         g.fillRect(x, y, width, height);
+    }
+
+    public void pointer(Component panel) {
+        mouseInfo = MouseInfo.getPointerInfo();
+    
+        // Get mouse location relative to screen
+        Point mouseLocation = mouseInfo.getLocation();
+    
+        // Get panel location on the screen
+        Point panelLocation = panel.getLocationOnScreen();
+    
+        // Calculate relative mouse position
+        double mouseX = mouseLocation.getX() - panelLocation.getX();
+        double mouseY = mouseLocation.getY() - panelLocation.getY();
+    
+        // Calculate differences relative to player's center
+        double dx = mouseX - (x + width / 2.0);
+        double dy = mouseY - (y + height / 2.0);
+    
+        // Calculate angle in radians
+        double angleRadians = Math.atan2(dy, dx);
+    
+        // Convert to degrees
+        double angleDegrees = Math.toDegrees(angleRadians);
+    
+        // Print angles (for debugging)
+        System.out.println("Angle in radians: " + angleRadians);
+        System.out.println("Angle in degrees: " + angleDegrees);
+        
+        
+        
+        
+        
+        
     }
 }
