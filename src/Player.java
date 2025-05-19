@@ -17,6 +17,7 @@ public class Player {
     private boolean isMovingRight = false;
     private boolean isMovingUp = false;
     private boolean isMovingDown = false;
+    private character lastKeyPressed = null;
     PointerInfo mouseInfo;
 
     //Constructor
@@ -30,10 +31,10 @@ public class Player {
 
     //Handle key press
     public void keyPressed(int key) {
-        if (key == KeyEvent.VK_LEFT) isMovingLeft = true;
-        if (key == KeyEvent.VK_RIGHT) isMovingRight = true;
-        if (key == KeyEvent.VK_UP) isMovingUp = true;
-        if (key == KeyEvent.VK_DOWN) isMovingDown = true;
+        if (key == KeyEvent.VK_LEFT) isMovingLeft = true; lastKeyPressed = 'l';
+        if (key == KeyEvent.VK_RIGHT) isMovingRight = true;lastKeyPressed = 'r';
+        if (key == KeyEvent.VK_UP) isMovingUp = true;lastKeyPressed = 'u';
+        if (key == KeyEvent.VK_DOWN) isMovingDown = true;lastKeyPressed = 'd';
     }
 
     //Handle key release
@@ -46,10 +47,10 @@ public class Player {
 
     //Update player's position
     public void update(int panelWidth, int panelHeight) {
-        if (isMovingLeft && x > 0) x -= speed;
-        if (isMovingRight && x < panelWidth - width) x += speed;
-        if (isMovingUp && y > 0) y -= speed;
-        if (isMovingDown && y < panelHeight - height) y += speed;
+        if (isMovingLeft && x > 0 && lastKeyPressed!='r') x -= speed;
+        if (isMovingRight && x < panelWidth - width && lastKeyPressed!='l') x += speed;
+        if (isMovingUp && y > 0 && lastKeyPressed!='d') y -= speed;
+        if (isMovingDown && y < panelHeight - height && lastKeyPressed!='u') y += speed;
     }
 
     //Draw player
