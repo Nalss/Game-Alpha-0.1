@@ -18,7 +18,9 @@ public class Gamepanel extends JComponent implements KeyListener {
     public void openGUI() {
         //Open GUI
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(400, 300);
+            frame.setSize(600, 400); //Set the size of the window
+//            frame.setResizable(false); //Disable resizing
+//            frame.setFocusable(true); //Make the frame focusable
             frame.setLocationRelativeTo(null); //Centers the window on screen
             Gamepanel gamePanel = this;
             frame.add(gamePanel);
